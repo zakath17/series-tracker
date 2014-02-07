@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML PUBLIC>
+<html>
+	<head>
+		<title>Series Tracker</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<script type="text/template" id="series-collection-template">
+			<table id='series-table'>
+				<caption>Liste des s&eacute;ries en cours</caption>
+				<thead>
+					<tr>
+						<th>S&eacute;rie</th>
+						<th>Saison</th>
+						<th>Episode</th>
+						<th>Supprimer</th>
+					</tr>
+				</thead>
+				<tbody>
+				<% _.each(series, function(serie) { %>
+					<tr>
+						<td><%= serie.id %></td>
+						<td>
+							<a id="decreaseSeason" href="<%= serie.id %>">&lt;&nbsp;</a>
+							<%= serie.season  %>
+							<a id="increaseSeason" href="<%= serie.id %>">&nbsp;&gt;</a>
+						</td>
+						<td>
+							<a id="decreaseEpisode" href="<%= serie.id %>">&lt;&nbsp;</a>
+							<%= serie.episode %>
+							<a id="increaseEpisode" href="<%= serie.id %>">&nbsp;&gt;</a>
+						</td>
+						<td>
+							<a id="removeSerie" href="<%= serie.id %>">X</a>
+						</td>
+					</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</script>
+		<div id='series-collection-container'></div>
+		<div id="serie-form-container">
+			<form>
+				<fieldset>
+					<legend>Ajouter une s&eacute;rie</legend>
+					<input type="text" id="id" placeholder="Nom de la s&eacute;rie"/>
+					<button type="submit" class="btn">Ajouter</button>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+	<script src="js/vendor/zepto.min.js"></script>
+	<script src="js/vendor/underscore-min.js"></script>
+	<script src="js/vendor/backbone-min.js"></script>
+	<script src="js/vendor/backbone-localstorage.js"></script>
+	<script src="js/series.js"></script>
+</html>
